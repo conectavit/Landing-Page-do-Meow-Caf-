@@ -15,12 +15,13 @@ const OUT = path.join(__dirname, 'reels-conexo-premio-qualidade-2026.mp4');
   const duration = await page.evaluate(() => window.DURATION);
   const frames = Math.round(duration * FPS);
 
-  // trilha silenciosa para compatibilidade com o Instagram (adicione a música no app)
+  // trilha original gerada por trilha.py (rode "python3 trilha.py" antes)
   const ffmpeg = spawn('ffmpeg', [
     '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
-    '-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100',
+    '-i', path.join(__dirname, 'trilha.wav'),
     '-shortest', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
-    '-crf', '18', '-preset', 'medium', '-c:a', 'aac', '-b:a', '128k',
+    '-crf', '18', '-preset', 'medium',
+    '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11', '-ar', '44100', '-c:a', 'aac', '-b:a', '192k',
     '-movflags', '+faststart', OUT,
   ], { stdio: ['pipe', 'inherit', 'inherit'] });
 
