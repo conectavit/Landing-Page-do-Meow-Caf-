@@ -21,16 +21,17 @@
 
   #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--black); }
 
+  /* imagem de fundo em tela cheia (uma por vídeo, em assets/curiosidade-N.jpg) */
   #photo {
-    position: absolute; left: 50%; top: 150px; width: 1620px; height: 952px;
-    background: url(assets/foto-porto.jpg) center 100% / cover no-repeat;
-    transform-origin: 70% 60%;
+    position: absolute; left: 50%; top: 0; width: 1080px; height: 1920px;
+    background: center / cover no-repeat;
+    transform-origin: 50% 40%;
   }
   #shade {
     position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, #0a1a45 0px, #0a1a45 160px, rgba(10,26,69,.0) 520px),
-      linear-gradient(0deg, var(--black) 0px, var(--black) 720px, rgba(5,5,5,.85) 860px, rgba(5,5,5,0) 1150px);
+      linear-gradient(180deg, rgba(1,21,80,.85) 0px, rgba(1,21,80,0) 400px),
+      linear-gradient(0deg, rgba(5,5,5,.94) 0px, rgba(5,5,5,.9) 560px, rgba(5,5,5,.6) 1050px, rgba(5,5,5,0) 1380px);
   }
   #tint { position: absolute; inset: 0; background: var(--navy); opacity: 0; }
 
@@ -182,6 +183,7 @@
   const $ = id => document.getElementById(id);
 
   $('serieNum').textContent = '#' + V;
+  $('photo').style.backgroundImage = `url(assets/curiosidade-${V}.jpg)`;
   $('s1s').innerHTML = C.gancho;
   $('s2l').innerHTML = C.l1;
   $('s3k').textContent = C.k; $('s3t').textContent = C.t; $('s3d').textContent = C.d;
@@ -219,7 +221,7 @@
   }
 
   function render(t) {
-    $('photo').style.transform = `translateX(-50%) scale(${1 + t * .012}) translateX(${-t * 6}px)`;
+    $('photo').style.transform = `translateX(-50%) scale(${1.02 + t * .01})`;
     $('tint').style.opacity = .55 * Math.min(prog(t, 6.6, 7), 1 - prog(t, 10.2, 10.6));
     $('social').style.opacity = easeOut(prog(t, .2, .7));
     $('serie').style.opacity = easeOut(prog(t, .4, .9));
