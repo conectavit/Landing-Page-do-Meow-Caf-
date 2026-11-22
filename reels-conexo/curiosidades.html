@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Conexo Logistics · Curiosidades da Logística (Reels)</title>
+<style>
+  /* Série "Curiosidades da Logística" — mesma identidade do index.html.
+     Escolha o vídeo com ?v=1, ?v=2 ou ?v=3; o conteúdo fica em VIDEOS, no script. */
+  :root {
+    --navy:    #011550;
+    --blue:    #0D31AB;
+    --orange:  #F75D03;
+    --black:   #050505;
+    --text:    #FFFFFF;
+    --font: "Inter", "Inter Display", Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--black); }
+  body { font-family: var(--font); color: var(--text); }
+
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--black); }
+
+  #photo {
+    position: absolute; left: 50%; top: 150px; width: 1620px; height: 952px;
+    background: url(assets/foto-porto.jpg) center 100% / cover no-repeat;
+    transform-origin: 70% 60%;
+  }
+  #shade {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, #0a1a45 0px, #0a1a45 160px, rgba(10,26,69,.0) 520px),
+      linear-gradient(0deg, var(--black) 0px, var(--black) 720px, rgba(5,5,5,.85) 860px, rgba(5,5,5,0) 1150px);
+  }
+  #tint { position: absolute; inset: 0; background: var(--navy); opacity: 0; }
+
+  .social { position: absolute; top: 150px; left: 80px; display: flex; align-items: center; gap: 12px; }
+  .social .ic { width: 58px; height: 58px; border-radius: 6px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
+  .social .ic svg { width: 36px; height: 36px; fill: #fff; }
+  .social .handle { margin-left: 14px; font-size: 34px; font-weight: 500; }
+
+  /* selo da série, no canto superior direito */
+  .serie { position: absolute; top: 150px; right: 80px; height: 58px; padding: 0 22px; display: flex; align-items: center; gap: 12px;
+           background: var(--navy); border: 3px solid var(--orange); font-weight: 800; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; }
+  .serie b { color: var(--orange); }
+
+  .scene { position: absolute; inset: 0; opacity: 0; }
+  .block { position: absolute; left: 80px; right: 80px; bottom: 600px; }
+
+  .tw { display: block; }
+  .title { display: inline; -webkit-box-decoration-break: clone; box-decoration-break: clone; background: var(--navy); padding: 4px 22px 10px; font-weight: 800; font-size: 98px; line-height: 1.22; text-transform: uppercase; letter-spacing: -1px; }
+  .title.sm { font-size: 84px; }
+  .title.orange { background: var(--orange); }
+  .sub { margin-top: 26px; font-weight: 800; font-size: 54px; line-height: 1.08; text-transform: uppercase; }
+  .sub .o { color: var(--orange); }
+
+  /* número gigante das cenas de destaque */
+  .big { font-weight: 900; font-size: 270px; line-height: .9; letter-spacing: -8px; color: var(--orange); text-shadow: 0 20px 60px rgba(0,0,0,.6); white-space: nowrap; }
+  .big small { font-size: 120px; letter-spacing: -2px; }
+  .label { margin-top: 26px; padding: 26px 32px; background: var(--navy); border-left: 12px solid var(--orange);
+           font-weight: 700; font-size: 42px; line-height: 1.25; }
+
+  .card { padding: 40px 44px; border-left: 12px solid var(--orange); background: rgba(1,21,80,.88); }
+  .card .k { font-weight: 800; font-size: 34px; letter-spacing: 6px; color: var(--orange); text-transform: uppercase; }
+  .card .t { margin-top: 12px; font-weight: 800; font-size: 76px; text-transform: uppercase; line-height: 1.02; }
+  .card .d { margin-top: 18px; font-weight: 600; font-size: 40px; line-height: 1.28; }
+
+  .follow { display: inline-flex; align-items: center; gap: 18px; margin-top: 34px; padding: 22px 36px; background: var(--orange); font-weight: 800; font-size: 42px; text-transform: uppercase; }
+  .fonte { position: absolute; left: 80px; right: 80px; bottom: 520px; font-size: 26px; font-weight: 500; color: rgba(255,255,255,.55); }
+
+  .brandrow { position: absolute; left: 0; right: 0; bottom: 380px; display: flex; align-items: center; justify-content: center; gap: 56px; }
+  .brandrow .logo { height: 118px; }
+  .brandrow .seals { height: 88px; }
+
+  .bar { position: absolute; left: 0; top: 0; height: 10px; background: var(--orange); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="photo"></div>
+  <div id="shade"></div>
+  <div id="tint"></div>
+
+  <div class="social" id="social">
+    <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 3c-2.4 0-2.7 0-3.7.1-3.3.2-5 1.8-5.2 5.2C3 9.3 3 9.6 3 12s0 2.7.1 3.7c.2 3.3 1.8 5 5.2 5.2 1 .1 1.3.1 3.7.1s2.7 0 3.7-.1c3.3-.2 5-1.8 5.2-5.2.1-1 .1-1.3.1-3.7s0-2.7-.1-3.7c-.2-3.3-1.8-5-5.2-5.2C14.7 3 14.4 3 12 3zm0 1.6c2.4 0 2.6 0 3.6.1 2.4.1 3.6 1.3 3.7 3.7.1 1 .1 1.2.1 3.6s0 2.6-.1 3.6c-.1 2.4-1.3 3.6-3.7 3.7-1 .1-1.2.1-3.6.1s-2.6 0-3.6-.1c-2.4-.1-3.6-1.3-3.7-3.7-.1-1-.1-1.2-.1-3.6s0-2.6.1-3.6c.1-2.4 1.3-3.6 3.7-3.7 1-.1 1.2-.1 3.6-.1z"/></svg></div>
+    <div class="ic"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.3H8.1v3h2.5V21h2.9z"/></svg></div>
+    <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 9h3v11H5zM6.5 4a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zM10 9h2.9v1.5c.4-.8 1.4-1.7 3-1.7 3.1 0 3.6 2 3.6 4.7V20h-3v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10z"/></svg></div>
+    <div class="handle">@conexo.brasil</div>
+  </div>
+  <div class="serie" id="serie">Curiosidades <b id="serieNum">#1</b></div>
+
+  <!-- CENA 1: gancho -->
+  <section class="scene" id="s1">
+    <div class="block">
+      <div class="tw" id="s1t"><span class="title orange">Você sabia?</span></div>
+      <div class="sub" id="s1s"></div>
+    </div>
+  </section>
+
+  <!-- CENA 2: número em destaque -->
+  <section class="scene" id="s2">
+    <div class="block">
+      <div class="big" id="s2n"></div>
+      <div class="label" id="s2l"></div>
+    </div>
+  </section>
+
+  <!-- CENA 3: explicação -->
+  <section class="scene" id="s3">
+    <div class="block">
+      <div class="card" id="s3c"><div class="k" id="s3k"></div><div class="t" id="s3t"></div><div class="d" id="s3d"></div></div>
+    </div>
+  </section>
+
+  <!-- CENA 4: segundo número -->
+  <section class="scene" id="s4">
+    <div class="block">
+      <div class="big" id="s4n"></div>
+      <div class="label" id="s4l"></div>
+    </div>
+  </section>
+
+  <!-- CENA 5: fechamento -->
+  <section class="scene" id="s5">
+    <div class="block">
+      <div class="tw" id="s5t"><span class="title sm" id="s5tt"></span></div>
+      <div class="sub" id="s5s"></div>
+      <div class="follow" id="s5f">Siga @conexo.brasil</div>
+    </div>
+  </section>
+
+  <div class="fonte" id="fonte"></div>
+
+  <div class="brandrow" id="brandrow">
+    <img class="logo" src="assets/logo-conexo-branco.png" alt="Conexo Logistics">
+    <img class="seals" src="assets/selos-aeo-iso.png" alt="AEO e ISO 9001:2015">
+  </div>
+
+  <div class="bar" id="bar"></div>
+</div>
+
+<script>
+  // Conteúdo de cada vídeo. n1/n2 são os números que "contam" na tela.
+  const VIDEOS = {
+    1: {
+      gancho: 'Que o contêiner<br>tem só <span class="o">70 anos</span>?',
+      n1: { de: 1900, ate: 1956 },
+      l1: 'Malcom McLean embarca 58 contêineres no navio <b>Ideal X</b>, de Newark a Houston (EUA).',
+      k: 'Antes disso', t: 'Tudo na mão', d: 'Sacos, caixas e barris eram embarcados um a um por estivadores. Carregar um navio levava dias.',
+      n2: { de: 0, ate: 97, pre: '-', suf: '<small>%</small>' },
+      l2: 'no custo de embarque por tonelada: de <b>US$ 5,83</b> para <b>US$ 0,16</b>.',
+      fecho: 'Uma caixa que mudou o mundo.',
+      fechoSub: 'E a Conexo cuida da <span class="o">sua</span>,<br>do embarque à entrega.',
+      fonte: 'Fonte: The Box, Marc Levinson (2006).',
+    },
+    2: {
+      gancho: 'Como viaja a maior parte<br>do <span class="o">comércio mundial</span>?',
+      n1: { de: 0, ate: 80, suf: '<small>%</small>' },
+      l1: 'do comércio mundial, em volume, é transportado por <b>navios</b>.',
+      k: 'Gigantes do mar', t: '24 mil contêineres', d: 'De 20 pés. É o que cabe nos maiores porta-contêineres do mundo, com cerca de 400 metros de comprimento.',
+      n2: { de: 0, ate: 4, pre: '≈' },
+      l2: 'campos de futebol enfileirados: esse é o tamanho de um desses navios.',
+      fecho: 'O mar move o mundo.',
+      fechoSub: 'E a Conexo conecta<br><span class="o">o seu negócio</span> a ele.',
+      fonte: 'Fontes: UNCTAD (Review of Maritime Transport) e dados dos armadores.',
+    },
+    3: {
+      gancho: 'Que as regras do<br>comércio internacional<br>têm <span class="o">90 anos</span>?',
+      n1: { de: 1900, ate: 1936 },
+      l1: 'A Câmara de Comércio Internacional (ICC) publica os primeiros <b>Incoterms</b>.',
+      k: 'Para que servem', t: 'Quem paga o quê?', d: 'Eles definem quem paga frete e seguro, e em que ponto o risco da carga passa do vendedor ao comprador.',
+      n2: { de: 0, ate: 11 },
+      l2: 'termos na versão atual, os <b>Incoterms® 2020</b>, como EXW, FOB e CIF.',
+      fecho: 'Na dúvida sobre o Incoterm certo?',
+      fechoSub: 'Fale com a <span class="o">Conexo</span>.<br>A gente te ajuda a escolher.',
+      fonte: 'Fonte: International Chamber of Commerce (ICC).',
+    },
+  };
+
+  const V = Number(new URLSearchParams(location.search).get('v')) || 1;
+  const C = VIDEOS[V];
+  const $ = id => document.getElementById(id);
+
+  $('serieNum').textContent = '#' + V;
+  $('s1s').innerHTML = C.gancho;
+  $('s2l').innerHTML = C.l1;
+  $('s3k').textContent = C.k; $('s3t').textContent = C.t; $('s3d').textContent = C.d;
+  $('s4l').innerHTML = C.l2;
+  $('s5tt').textContent = C.fecho;
+  $('s5s').innerHTML = C.fechoSub;
+  $('fonte').textContent = C.fonte;
+
+  // Linha do tempo determinística (mesmos cortes da trilha.py): render(t) desenha o quadro do segundo t.
+  const DURATION = 16;
+  const clamp = v => Math.max(0, Math.min(1, v));
+  const prog = (t, a, b) => clamp((t - a) / (b - a));
+  const easeOut = x => 1 - Math.pow(1 - x, 3);
+  const backOut = x => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3*Math.pow(x-1,3) + c1*Math.pow(x-1,2); };
+  const sceneAlpha = (t, a, b, f = .3) => Math.min(prog(t, a, a + f), 1 - prog(t, b - f, b));
+
+  function wipe(el, t, start, dur = .5) {
+    const p = easeOut(prog(t, start, start + dur));
+    el.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
+  }
+  function rise(el, t, start, dist = 60, dur = .6) {
+    const p = easeOut(prog(t, start, start + dur));
+    el.style.opacity = p;
+    el.style.transform = `translateY(${(1 - p) * dist}px)`;
+  }
+  // número que conta até o valor final
+  function counter(el, t, start, n, dur = 1.2) {
+    const p = easeOut(prog(t, start, start + dur));
+    const v = Math.round(n.de + (n.ate - n.de) * p);
+    el.innerHTML = (n.pre || '') + v + (n.suf || '');
+    const s = backOut(prog(t, start, start + .5));
+    el.style.opacity = prog(t, start, start + .2);
+    el.style.transform = `scale(${.6 + .4 * s})`;
+    el.style.transformOrigin = 'left bottom';
+  }
+
+  function render(t) {
+    $('photo').style.transform = `translateX(-50%) scale(${1 + t * .012}) translateX(${-t * 6}px)`;
+    $('tint').style.opacity = .55 * Math.min(prog(t, 6.6, 7), 1 - prog(t, 10.2, 10.6));
+    $('social').style.opacity = easeOut(prog(t, .2, .7));
+    $('serie').style.opacity = easeOut(prog(t, .4, .9));
+
+    // CENA 1 (0–3.4s)
+    $('s1').style.opacity = 1 - prog(t, 3.1, 3.4);
+    wipe($('s1t'), t, .3);
+    rise($('s1s'), t, .8);
+
+    // CENA 2 (3.2–6.8s)
+    $('s2').style.opacity = sceneAlpha(t, 3.2, 6.8);
+    counter($('s2n'), t, 3.35, C.n1);
+    rise($('s2l'), t, 4.1);
+
+    // CENA 3 (6.6–10.4s)
+    $('s3').style.opacity = sceneAlpha(t, 6.6, 10.4);
+    rise($('s3c'), t, 6.8, 120, .8);
+
+    // CENA 4 (10.2–13.2s)
+    $('s4').style.opacity = sceneAlpha(t, 10.2, 13.2);
+    counter($('s4n'), t, 10.35, C.n2, 1);
+    rise($('s4l'), t, 11.0);
+
+    // CENA 5 (13–16s)
+    $('s5').style.opacity = prog(t, 13, 13.3);
+    wipe($('s5t'), t, 13.1);
+    rise($('s5s'), t, 13.4);
+    const fp = backOut(prog(t, 13.9, 14.4));
+    $('s5f').style.transform = `scale(${fp})`;
+    $('s5f').style.transformOrigin = 'left center';
+
+    // fonte aparece junto com os dados; rodapé de marca na abertura e no fechamento
+    $('fonte').style.opacity = .9 * Math.min(prog(t, 4.2, 4.6), 1 - prog(t, 12.9, 13.2));
+    $('brandrow').style.opacity = Math.min(prog(t, 1.0, 1.5), 1 - prog(t, 3.0, 3.3)) + prog(t, 13.4, 13.8);
+
+    $('bar').style.width = `${(t / DURATION) * 100}%`;
+  }
+
+  window.render = render;
+  window.DURATION = DURATION;
+
+  if (!location.search.includes('capture')) {
+    const t0 = performance.now();
+    (function loop(now) { render(((now - t0) / 1000) % DURATION); requestAnimationFrame(loop); })(t0);
+    if (innerHeight < 1920) {
+      const fit = () => { const s = Math.min(innerWidth / 1080, innerHeight / 1920);
+        document.body.style.cssText = `transform:scale(${s});transform-origin:0 0`; };
+      addEventListener('resize', fit); fit();
+    }
+  } else {
+    render(0);
+  }
+</script>
+</body>
+</html>

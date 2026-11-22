@@ -1,7 +1,9 @@
 # Gera a trilha original do Reels (16 s, 120 BPM), sincronizada com as cenas
 # do index.html. Tudo é sintetizado aqui, sem samples externos.
-# Uso: python3 trilha.py  → trilha.wav
+# Uso: python3 trilha.py      → trilha.wav (Prêmio Qualidade)
+#      python3 trilha.py N    → trilha-N.wav (variação N da série de curiosidades)
 import os
+import sys
 import wave
 import numpy as np
 
@@ -10,7 +12,8 @@ DUR = 16.0
 BPM = 120
 BEAT = 60 / BPM          # 0,5 s; um compasso = 2 s
 N = int(SR * DUR)
-rng = np.random.default_rng(7)
+VARIACAO = int(sys.argv[1]) if len(sys.argv) > 1 else 0
+rng = np.random.default_rng(7 + VARIACAO)
 t_all = np.arange(N) / SR
 
 # cortes de cena no index.html
@@ -53,14 +56,14 @@ def put_st(sinal, inicio, pan=0.0, ganho=1.0):
     put(R, sinal * ganho * np.sqrt(0.5 * (1 + pan)), inicio)
 
 
-# progressão: Am – F – C – G (vi–IV–I–V), um acorde por compasso
-ACORDES = [
-    [57, 60, 64],  # Am
-    [53, 57, 60],  # F
-    [48, 55, 60, 64],  # C
-    [55, 59, 62],  # G
-]
-BAIXO = [45, 41, 48, 43]
+# progressões (um acorde por compasso) e baixos de cada variação
+PROGRESSOES = {
+    0: ([[57, 60, 64], [53, 57, 60], [48, 55, 60, 64], [55, 59, 62]], [45, 41, 48, 43]),  # Am F C G
+    1: ([[48, 55, 60, 64], [55, 59, 62], [57, 60, 64], [53, 57, 60]], [48, 43, 45, 41]),  # C G Am F
+    2: ([[50, 53, 57], [46, 50, 53], [53, 57, 60], [48, 52, 55]], [50, 46, 41, 48]),      # Dm Bb F C
+    3: ([[52, 55, 59], [48, 52, 55], [55, 59, 62], [50, 54, 57]], [40, 48, 43, 50]),      # Em C G D
+}
+ACORDES, BAIXO = PROGRESSOES[VARIACAO]
 
 
 def acorde(c):
@@ -218,7 +221,8 @@ mix *= np.clip(t_all / 0.02, 0, 1)[:, None]             # sem clique no início
 mix /= np.max(np.abs(mix)) + 1e-9
 mix = np.tanh(mix * 1.6) / np.tanh(1.6) * 0.89          # limitador suave
 
-saida = os.path.join(os.path.dirname(os.path.abspath(__file__)), "trilha.wav")
+nome = f"trilha-{VARIACAO}.wav" if VARIACAO else "trilha.wav"
+saida = os.path.join(os.path.dirname(os.path.abspath(__file__)), nome)
 with wave.open(saida, "wb") as w:
     w.setnchannels(2)
     w.setsampwidth(2)
